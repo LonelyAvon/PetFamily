@@ -2,13 +2,17 @@
 
 public class Post
 {
+    private Post()
+    {
+    }
+    
     public Post(
         string name,
         string breed,
         int height,
         bool vaccine,
         DateOnly birthDate,
-        string photo,
+        MainPhoto mainPhoto,
         string description,
         string adress)
     {
@@ -17,7 +21,7 @@ public class Post
         Height = height;
         Vaccine = vaccine;
         BirthDate = birthDate;
-        Photo = photo;
+        MainPhoto = mainPhoto;
         Description = description;
         Adress = adress;
     }
@@ -36,19 +40,11 @@ public class Post
 
     public DateOnly BirthDate { get; private set; }
 
-    public string Photo { get; private set; }
+    public MainPhoto MainPhoto { get; private set; }
 
     public string Description { get; private set; }
-
+    
     public string Adress { get; private set; }
-}
-
-public class Weight
-{
-    public int Grams { get; set; }
-
-    public Weight(float weight)
-    {
-        Grams = Convert.ToInt32(weight) * 1000;
-    }
+    
+    public List<Photo> Photos { get; private set; } = [];
 }
