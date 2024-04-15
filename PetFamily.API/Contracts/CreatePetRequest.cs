@@ -1,6 +1,6 @@
 namespace PetFamily.API.Contracts;
 
-public record CreatePostRequest(
+public record CreatePetRequest(
     string Name,
     string Breed,
     float Weight,

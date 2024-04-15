@@ -8,17 +8,17 @@ namespace PetFamily.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class PostController : ControllerBase
+public class PetController : ControllerBase
 {
     private readonly PetFamilyDbContext _dbContext;
 
-    public PostController(PetFamilyDbContext dbContext)
+    public PetController(PetFamilyDbContext dbContext)
     {
         _dbContext = dbContext;
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create(CreatePostRequest request, CancellationToken ct)
+    public async Task<IActionResult> Create(CreatePetRequest request, CancellationToken ct)
     {
         return Ok();
     }
