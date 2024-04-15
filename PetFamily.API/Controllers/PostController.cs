@@ -10,15 +10,15 @@ namespace PetFamily.API.Controllers;
 [Route("[controller]")]
 public class PostController : ControllerBase
 {
-    private readonly ApplicationContext _dbContext;
+    private readonly PetFamilyDbContext _dbContext;
 
-    public PostController(ApplicationContext dbContext)
+    public PostController(PetFamilyDbContext dbContext)
     {
         _dbContext = dbContext;
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create(CreatePostRequest request, [FromQuery] int size, CancellationToken ct)
+    public async Task<IActionResult> Create(CreatePostRequest request, CancellationToken ct)
     {
         return Ok();
     }
@@ -26,6 +26,8 @@ public class PostController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        return Ok();
+        var pets = await _dbContext.Pets.ToListAsync();
+        
+        return Ok(pets);
     }
 }

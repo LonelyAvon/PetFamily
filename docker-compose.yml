@@ -4,7 +4,7 @@
     image: postgres
     restart: always
     environment:
-      POSTGRES_DB: pet_connect
+      POSTGRES_DB: pet_family
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:

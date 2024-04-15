@@ -1,6 +1,6 @@
-namespace PetFamily.Domain;
+namespace PetFamily.Domain.ValueObjects;
 
-public class Weight
+public record Weight
 {
     public int Grams { get; set; }
 
