@@ -13,7 +13,7 @@ using PetFamily.Infrastructure;
 namespace PetFamily.Infrastructure.Migrations
 {
     [DbContext(typeof(PetFamilyDbContext))]
-    [Migration("20240417083215_Initial")]
+    [Migration("20240417121818_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -38,7 +38,7 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("animal_attitude");
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTimeOffset>("BirthDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("birth_date");
 
@@ -56,7 +56,7 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("color");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
@@ -92,16 +92,11 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("people_attitude");
 
-                    b.Property<bool>("Vaccine")
-                        .HasColumnType("boolean")
-                        .HasColumnName("vaccine");
-
                     b.ComplexProperty<Dictionary<string, object>>("Address", "PetFamily.Domain.Entities.Pet.Address#Address", b1 =>
                         {
                             b1.IsRequired();
 
                             b1.Property<string>("Building")
-                                .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("building");
 
@@ -111,12 +106,10 @@ namespace PetFamily.Infrastructure.Migrations
                                 .HasColumnName("city");
 
                             b1.Property<string>("Index")
-                                .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("index");
 
                             b1.Property<string>("Street")
-                                .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("street");
                         });

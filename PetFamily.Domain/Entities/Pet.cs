@@ -43,7 +43,6 @@ public class Pet
         Health = health;
         Height = height;
         Weight = weight;
-        Vaccine = vaccine;
         ContactPhoneNumber = contactPhoneNumber;
         VolunteerPhoneNumber = volunteerPhoneNumber;
         OnTreatment = onTreatment;
@@ -56,7 +55,7 @@ public class Pet
 
     public string Description { get; private set; }
 
-    public DateTime BirthDate { get; private set; }
+    public DateTimeOffset BirthDate { get; private set; }
 
     public string Breed { get; private set; }
 
@@ -80,15 +79,13 @@ public class Pet
 
     public Weight Weight { get; private set; }
 
-    public bool Vaccine { get; private set; }
-
     public PhoneNumber ContactPhoneNumber { get; private set; }
 
     public PhoneNumber VolunteerPhoneNumber { get; private set; }
 
     public bool OnTreatment { get; private set; }
 
-    public DateTime CreatedDate { get; private set; }
+    public DateTimeOffset CreatedDate { get; private set; }
 
     public IReadOnlyList<Vaccination> Vaccinations => _vaccinations;
     private readonly List<Vaccination> _vaccinations = [];
