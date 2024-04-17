@@ -1,3 +1,4 @@
+using CSharpFunctionalExtensions;
 using PetFamily.Domain.Common;
 
 namespace PetFamily.Domain.ValueObjects;
@@ -16,18 +17,18 @@ public record Place
         Value = value;
     }
 
-    public static Place Create(string input)
+    public static Result<Place, Error> Create(string input)
     {
         if (input.IsEmpty())
-            throw new ArgumentException();
+            return Errors.General.ValueIsRequried();
 
         var place = input.Trim().ToUpper();
 
         if (_all.Any(p => p.Value == place) == false)
         {
-            throw new ArgumentException();
+            return Errors.General.ValueIsInvalid("place");
         }
 
-        return new(place);
+        return new Place(place);
     }
 }

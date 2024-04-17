@@ -1,21 +1,25 @@
-using Microsoft.EntityFrameworkCore;
+using PetFamily.API.Helpers;
+using PetFamily.Application;
+using PetFamily.Application.Abstractions;
 using PetFamily.Infrastructure;
+using PetFamily.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<PetsService>();
+builder.Services.AddScoped<IPetsRepository, PetRepository>();
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddScoped<PetFamilyDbContext>();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<PetFamilyDbContext>();
-
-    dbContext.Database.Migrate();
-}
+app.UseExceptionHandler();
 
 app.UseSwagger();
 app.UseSwaggerUI();

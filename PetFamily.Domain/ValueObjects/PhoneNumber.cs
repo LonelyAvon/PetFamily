@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using CSharpFunctionalExtensions;
 using PetFamily.Domain.Common;
 
 namespace PetFamily.Domain.ValueObjects;
@@ -14,14 +15,14 @@ public record PhoneNumber
         Number = number;
     }
 
-    public static PhoneNumber Create(string input)
+    public static Result<PhoneNumber, Error> Create(string input)
     {
         if (input.IsEmpty())
-            throw new ArgumentException();
+            return Errors.General.ValueIsRequried();
 
         if (Regex.IsMatch(input, russionPhoneRegex) == false)
-            throw new ArgumentException();
+            return Errors.General.ValueIsInvalid("phone number");
 
-        return new(input);
+        return new PhoneNumber(input);
     }
 }
