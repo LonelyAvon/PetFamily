@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using PetFamily.Domain.Common;
 
 namespace PetFamily.Domain.ValueObjects;
 

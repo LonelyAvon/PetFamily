@@ -1,3 +1,5 @@
+using PetFamily.Domain.Common;
+
 namespace PetFamily.Domain.ValueObjects;
 
 public record Place
