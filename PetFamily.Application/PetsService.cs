@@ -40,20 +40,33 @@ public class PetsService
 
         var pet = Pet.Create(
             request.Nickname,
+            request.Description,
+            request.Breed,
             request.Color,
+            request.PeopleAttitude,
+            request.AnimalAttitude,
+            request.Health,
+            request.Height,
+            request.BirthDate,
             address.Value,
             place.Value,
             weight.Value,
-            false,
-            "fsdfsdf",
             contactPhoneNumber.Value,
             volunteerPhoneNumber.Value,
-            true);
+            request.OnTreatment,
+            request.OnlyOneInFamily,
+            request.Castration);
+
 
         var idResult = await _petsRepository.Add(pet.Value, ct);
+
         if (idResult.IsFailure)
             return idResult.Error;
         
         return idResult;
+    }
+    public async Task<List<Pet>> GetAll(CancellationToken ct)
+    {
+        return await _petsRepository.GetAll(ct);
     }
 }

@@ -193,7 +193,7 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Applied")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("applied");
 
                     b.Property<string>("Name")

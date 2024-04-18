@@ -21,16 +21,16 @@ public record Address
     public static Result<Address, Error> Create(string city, string street, string building, string index)
     {
         if (city.IsEmpty())
-            return Errors.General.ValueIsRequried();
+            return Errors.General.ValueIsRequried(nameof(City));
 
         if (street.IsEmpty())
-            return Errors.General.ValueIsRequried();
+            return Errors.General.ValueIsRequried(nameof(Street));
 
         if (building.IsEmpty())
-            return Errors.General.ValueIsRequried();
+            return Errors.General.ValueIsRequried(nameof(Building));
 
         if (index.IsEmpty())
-            return Errors.General.ValueIsRequried();
+            return Errors.General.ValueIsRequried(nameof(Index));
 
         return new Address(city, street, building, index);
     }

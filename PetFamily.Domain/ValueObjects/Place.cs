@@ -20,13 +20,13 @@ public record Place
     public static Result<Place, Error> Create(string input)
     {
         if (input.IsEmpty())
-            return Errors.General.ValueIsRequried();
+            return Errors.General.ValueIsRequried(nameof(Place));
 
         var place = input.Trim().ToUpper();
 
         if (_all.Any(p => p.Value == place) == false)
         {
-            return Errors.General.ValueIsInvalid("place");
+            return Errors.General.ValueIsInvalid(nameof(Place));
         }
 
         return new Place(place);

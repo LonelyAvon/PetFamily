@@ -26,8 +26,11 @@ public static class Errors
         public static Error ValueIsInvalid(string name) =>
             new("value.is.invalid", $"{name} is invalid");
 
-        public static Error ValueIsRequried() =>
-            new("value.is.required", "Value is required");
+        public static Error ValueIsRequried(string? name = null)
+        {
+            var label = name == null ? "Value " : name + " ";
+            return new("value.is.required", $"{name} is required");
+        }
 
         public static Error InvalidLength(string? name = null)
         {
@@ -40,5 +43,10 @@ public static class Errors
     {
         public static Error ValueIsRequried() =>
             new("place.is.required", "Place is required");
+    }
+    public static class BirthDate
+    {
+        public static Error ValueIsUnderYears() =>
+            new("birthdate.is.under", "You must be over 18 y.o.");
     }
 }
