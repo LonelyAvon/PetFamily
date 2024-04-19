@@ -13,8 +13,8 @@ using PetFamily.Infrastructure;
 namespace PetFamily.Infrastructure.Migrations
 {
     [DbContext(typeof(PetFamilyDbContext))]
-    [Migration("20240417153901_Initial")]
-    partial class Initial
+    [Migration("20240418044512_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -196,7 +196,7 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Applied")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("applied");
 
                     b.Property<string>("Name")

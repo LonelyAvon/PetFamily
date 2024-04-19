@@ -1,8 +1,8 @@
 using CSharpFunctionalExtensions;
+using Microsoft.EntityFrameworkCore;
 using PetFamily.Application.Abstractions;
 using PetFamily.Domain.Common;
 using PetFamily.Domain.Entities;
-
 namespace PetFamily.Infrastructure.Repositories;
 
 public class PetRepository : IPetsRepository
@@ -21,7 +21,11 @@ public class PetRepository : IPetsRepository
 
         if (result == 0)
             return new Error("record.saving", "Pet can not be save");
-        
+
         return pet.Id;
+    }
+    public async Task<List<Pet>> GetAll(CancellationToken ct)
+    {
+        return await _dbContext.Pets.ToListAsync(ct);
     }
 }

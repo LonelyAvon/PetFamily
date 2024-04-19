@@ -26,8 +26,11 @@ public static class Errors
         public static Error ValueIsInvalid(string name) =>
             new("value.is.invalid", $"{name} is invalid");
 
-        public static Error ValueIsRequried() =>
-            new("value.is.required", "Value is required");
+        public static Error ValueIsRequried(string? name = null)
+        {
+            var label = name == null ? "Value " : name + " ";
+            return new("value.is.required", $"{name} is required");
+        }
 
         public static Error InvalidLength(string? name = null)
         {

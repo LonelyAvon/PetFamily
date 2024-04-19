@@ -7,6 +7,8 @@ namespace PetFamily.Domain.Entities;
 public class Pet
 {
     public const int MAX_NAME_LENGTH = 100;
+    public const int MAX_HEIGHT = 300;
+    public const int MAX_DESCRIPTION_LENGTH = 300;
 
     private Pet()
     {
@@ -84,44 +86,68 @@ public class Pet
     private readonly List<Photo> _photos = [];
 
     public static Result<Pet, Error> Create(
-        string nickname,
+        string nickname, 
+        string description,
+        string breed,
         string color,
+        string peopleAttitude,
+        string animalAttitude,
+        string health,
+
+        int height,
+
+        DateTimeOffset birthDate,
+
         Address address,
         Place place,
         Weight weight,
-        bool onlyOneInFamily,
-        string health,
         PhoneNumber contactPhoneNumber,
         PhoneNumber volunteerPhoneNumber,
-        bool onTreatment)
+
+        bool onTreatment,
+        bool onlyOneInFamily,
+        bool castration
+        )       
     {
         if (nickname.IsEmpty() || nickname.Length > MAX_NAME_LENGTH)
-            return Errors.General.InvalidLength();
+            return Errors.General.InvalidLength(nameof(Nickname));
+
+        if (description.IsEmpty() || nickname.Length > MAX_DESCRIPTION_LENGTH)
+            return Errors.General.InvalidLength(nameof(Description));
+
+        if (breed.IsEmpty())
+            return Errors.General.InvalidLength(nameof(Breed));
 
         if (color.IsEmpty())
-            return Errors.General.InvalidLength();
+            return Errors.General.InvalidLength(nameof(Color));
 
-        if (health.IsEmpty())
-            return Errors.General.InvalidLength();
+        if (peopleAttitude.IsEmpty())
+            return Errors.General.InvalidLength(nameof(PeopleAttitude));
+
+        if (animalAttitude.IsEmpty())
+            return Errors.General.InvalidLength(nameof(AnimalAttitude));
+
+        if (height > MAX_HEIGHT ||  height<=0)
+            return Errors.General.InvalidLength(nameof(Height));
 
         return new Pet(
             nickname,
-            "",
-            DateTimeOffset.Now,
-            "",
+            description,
+            birthDate,
+            breed,
             color,
             address,
             place,
-            false,
-            "",
-            "",
-            false,
+            castration,
+            peopleAttitude,
+            animalAttitude,
+            onlyOneInFamily,
             health,
-            null,
+            height,
             weight,
             contactPhoneNumber,
             volunteerPhoneNumber,
-            false,
+            onTreatment,
             DateTimeOffset.Now);
     }
 }

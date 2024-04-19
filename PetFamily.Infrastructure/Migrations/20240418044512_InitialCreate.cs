@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PetFamily.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -68,7 +68,7 @@ namespace PetFamily.Infrastructure.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    applied = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    applied = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     pet_id = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>

@@ -24,4 +24,10 @@ public class PetController : ControllerBase
         
         return Ok(idResult.Value);
     }
+    [HttpGet]
+    public async Task<IActionResult> GetAll(CancellationToken ct)
+    {
+        var petsList = await _petsService.GetAll(ct);
+        return Ok(petsList);
+    }
 }
