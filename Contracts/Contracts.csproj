@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="PetDto\Requests\" />
+      <None Remove="PetDto\Responses\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="PetDto\Requests\" />
+      <Folder Include="PetDto\Responses\" />
+    </ItemGroup>
 </Project>

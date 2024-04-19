@@ -44,9 +44,4 @@ public static class Errors
         public static Error ValueIsRequried() =>
             new("place.is.required", "Place is required");
     }
-    public static class BirthDate
-    {
-        public static Error ValueIsUnderYears() =>
-            new("birthdate.is.under", "You must be over 18 y.o.");
-    }
 }

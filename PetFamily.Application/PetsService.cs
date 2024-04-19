@@ -1,4 +1,5 @@
-﻿using Contracts.Requests;
+﻿using Contracts.PetDto.Responses;
+using Contracts.Requests;
 using CSharpFunctionalExtensions;
 using PetFamily.Application.Abstractions;
 using PetFamily.Domain.Common;
@@ -65,8 +66,36 @@ public class PetsService
         
         return idResult;
     }
-    public async Task<List<Pet>> GetAll(CancellationToken ct)
+    public async Task<List<GetAllPetsResponse>> GetAll(CancellationToken ct)
     {
-        return await _petsRepository.GetAll(ct);
+        var petsList = await _petsRepository.GetAll(ct);
+        List<GetAllPetsResponse> response = new List<GetAllPetsResponse>();
+        petsList.ForEach(x =>
+        {
+            response.Add(new GetAllPetsResponse(
+                x.Id,
+                x.Nickname,
+                x.Color,
+                x.Description,
+                x.Breed,
+                x.Health,
+                x.Address.City,
+                x.Address.Street,
+                x.Address.Building,
+                x.Address.Index,
+                x.Place.Value,
+                x.Weight.Kilograms,
+                x.BirthDate,
+                x.OnlyOneInFamily,
+                Convert.ToInt32(x.Height),
+                x.ContactPhoneNumber.Number,
+                x.VolunteerPhoneNumber.Number,
+                x.PeopleAttitude,
+                x.AnimalAttitude,
+                x.OnTreatment,
+                x.Castration
+                ));
+        });
+        return response;
     }
 }

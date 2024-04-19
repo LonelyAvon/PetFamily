@@ -150,9 +150,4 @@ public class Pet
             onTreatment,
             DateTimeOffset.Now);
     }
-
-    public static void UpdateNickname(Pet pet,string newNickname)
-    {
-        pet.Nickname = newNickname;
-    }
 }
